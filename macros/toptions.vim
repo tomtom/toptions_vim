@@ -4,7 +4,7 @@
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-04-02.
 " @Last Change: 2010-09-01.
-" @Revision:    0.1.17
+" @Revision:    0.1.18
 
 if &cp || exists("loaded_toptions")
     finish
@@ -129,6 +129,6 @@ command! -bang TStatus let statussel=empty("<bang>")
 
 augroup TOptions
     autocmd!
-    autocmd VimEnter * TOptions
+    autocmd VimEnter * TStatus
 augroup END
 
