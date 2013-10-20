@@ -4,7 +4,7 @@
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-04-02.
 " @Last Change: 2010-09-12.
-" @Revision:    0.1.19
+" @Revision:    0.1.20
 
 if &cp || exists("loaded_toptions")
     finish
@@ -12,6 +12,12 @@ endif
 let loaded_toptions = 1
 
 """""""" Custom Options.  {{{1
+
+if !exists('g:toptions_timefmt')
+    " A string for |strftime()|. If empty, don't display a time stamp in the status line.
+    let g:toptions_timefmt = ''   "{{{2
+    " let g:toptions_timefmt = '%d-%b-%Y %H:%M'
+endif
 
 let g:toptions = {}
 let g:toptions_etc = []
@@ -105,8 +111,9 @@ fun! TOptionsSummary(...)
         exec o
     endfor
     " if &co > 80
-        let opt=opt." | ".strftime(a:0 >= 1 ? a:1 : '%d-%b-%Y %H:%M')
-    " endif
+    if !empty(g:toptions_timefmt)
+        let opt=opt." | ".strftime(a:0 >= 1 ? a:1 : g:toptions_timefmt)
+    endif
     return opt
 endf
 
